@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Home Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+   
+    nav {
+      background-color: #f8f9fa;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-around;
+      border-bottom: 1px solid #ddd;
+    }
+    nav a {
+      color: #007bff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .content {
+      padding: 20px;
+      text-align: center;
+    }
+    .content h2 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      color: #333;
+    }
+    .content p {
+      font-size: 16px;
+      color: #555;
+    }
+    footer {
+      background-color: #343a40;
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    footer p {
+      margin: 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <!-- <header>
+    <h1>Welcome to User Dashboard</h1>
+  </header> -->
+  <app-header/>
+
+  <nav>
+    <a href="/profile">Profile</a>
+    <a href="/settings">Settings</a>
+    <a href="/notifications">Notifications</a>
+    <a RouterLink="/" (click)="logoutUser()">Logout</a>
+
+  </nav>
+
+  <div class="content">
+    <h2>User List</h2>
+    <table style="width: 100%; text-align: left;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Designation</th>
+          <th>userEmail</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList; let i = index">
+         
+          <td>{{ i + 1 }}</td>
+          <td>{{ user.Name }}</td>
+          <td>{{ user.Mobile }}</td>
+          <td>{{ user.Designation }}</td>
+          <td>{{ user.userEmail }}</td>
+          <td>
+            <!-- <button (click)="editUser(user)">Edit</button> -->
+            <button (click)="deleteUser(user.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Add any widgets or cards for recent activity here -->
+  </div>
+<app-footer/>
+  <!-- <footer>
+    <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+  </footer> -->
+</body>
+</html>
+
