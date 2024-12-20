@@ -59,7 +59,7 @@
   <!-- <header>
     <h1>Welcome to User Dashboard</h1>
   </header> -->
-  <app-header/>
+
 
   <nav>
     <a href="/profile">Profile</a>
@@ -92,6 +92,8 @@
           <td>{{ user.userEmail }}</td>
           <td>
             <!-- <button (click)="editUser(user)">Edit</button> -->
+            <!-- <button>Edit</button> -->
+            <button routerLink="/edit/{{user.id}}">Edit</button>
             <button (click)="deleteUser(user.id)">Delete</button>
           </td>
         </tr>
@@ -99,7 +101,7 @@
     </table>
     <!-- Add any widgets or cards for recent activity here -->
   </div>
-<app-footer/>
+
   <!-- <footer>
     <p>&copy; 2024 Your Company Name. All rights reserved.</p>
   </footer> -->

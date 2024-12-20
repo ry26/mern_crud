@@ -1,0 +1,32 @@
+
+<div class="content">
+    <h2>User Edit</h2>
+    
+    <!-- Form setup with formGroup -->
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      
+      <div>
+        <label for="Name">Name:</label>
+        <input id="Name" type="text" [(ngModel)]="user.data.Name" placeholder="Enter the name" formControlName="Name" />
+      </div>
+    
+      <div>
+        <label for="Email">Email:</label>
+        <input id="Email" type="email" [(ngModel)]="user.data.userEmail" placeholder="Enter the Email" formControlName="Email" />
+      </div>
+    
+      <div>
+        <label for="Mobile">Mobile No:</label>
+        <input id="Mobile" type="number" [(ngModel)]="user.data.Mobile" placeholder="Enter the mobile no" formControlName="Mobile" />
+      </div>
+    
+      <div>
+        <label for="Designation">Designation:</label>
+        <input id="Designation" type="text" [(ngModel)]="user.data.Designation" placeholder="Enter the Designation" formControlName="Designation" />
+      </div>
+    
+      <button type="submit">Submit</button>
+    
+    </form>
+   
+  </div>

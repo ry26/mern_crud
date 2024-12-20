@@ -181,6 +181,63 @@ class shainkeydetailController {
             res.send({ "status": "failed", "message": "Logout Failed" })
         }
     }
+
+    static getusershainkeydetails = async (req, res) =>{
+        try {
+            console.log( "data",req.params.id)
+            const getshainkeydetails  = await shainkeydetail.findOne({ where: { id: req.params.id, isDeleted: false } })
+          return res.status(200).json({
+              code: 200,
+              message: "User Details",
+              data: getshainkeydetails
+          });
+        } catch (e) {
+          return res.status(500).json({
+              code: 500,
+              message: "An error occurred",
+              error: e.message
+          });
+        }
+      }
+
+
+      static updateUserDetail = async (req, res) => {
+        try {
+            console.log("helkl")
+            const userId = req.params.id; // Get the user ID from the URL parameters
+            const { Name, Email,Mobile,Designation } = req.body; // Get the updated values from the request body
+
+            // Validate required fields
+            // if (!Name || !Email) {
+            //     return res.status(400).send({ status: "failed", message: "Name and Email are required" });
+            // }
+
+            // Find the user by ID and check if it exists
+            const userRecord = await shainkeydetail.findOne({
+                where: { id: userId, isDeleted: false },
+            });
+
+            if (!userRecord) {
+                return res.status(404).send({ status: "failed", message: "User not found or already deleted" });
+            }
+
+            // Update user details
+            const updatedUser = await shainkeydetail.update(
+                { Name: Name, Mobile: Mobile,userEmail: Email,Designation: Designation },
+                { where: { id: userId } }
+            );
+
+            if (updatedUser[0] > 0) {
+                res.send({ status: "success", message: "User updated successfully" });
+            } else {
+                res.status(500).send({ status: "failed", message: "Failed to update user" });
+            }
+        } catch (e) {
+            console.log("error", e);
+            res.status(500).send({ status: "error", message: "Internal server error" });
+        }
+    };
+
 }
 
 export default shainkeydetailController

@@ -35,4 +35,14 @@ export class ApiService {
     const url = `${this.apiUrl}${endpoint}`;  // Remove any trailing/leading slashes
     return this.http.delete(url);  // Make the HTTP GET request
   }
+
+  GetDataById(endpoint: string, id: number): Observable<any> {
+    const url = `${this.apiUrl}${endpoint}/${id}`;  // Append the ID to the endpoint
+    return this.http.get(url);  // Make the HTTP GET request
+  }
+
+  PutDataById(endpoint: string, id: number | number, data: any): Observable<any> {
+    const url = `${this.apiUrl}${endpoint}/${id}`;  // Append the ID to the endpoint
+    return this.http.put(url, data);  // Make the HTTP PUT request with the data in the body
+  }
 }
